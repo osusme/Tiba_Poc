@@ -11,8 +11,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Application\Application.csproj" />
-        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+        <ProjectReference Include="../Application/Application.csproj" />
+        <ProjectReference Include="../Infrastructure/Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -33,6 +33,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="6.0.2" />
+        <PackageReference Include="Microsoft.Identity.Web" Version="2.11.0" />
         <PackageReference Include="NSwag.AspNetCore" Version="13.19.0" />
         <PackageReference Include="NSwag.MSBuild" Version="13.19.0">
             <PrivateAssets>all</PrivateAssets>
@@ -54,7 +55,7 @@
         </Exec>
         <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
         <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
-        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install --force" />
     </Target>
 
     <!-- Auto-generated Open API specification and Angular TypeScript clients -->
@@ -63,7 +64,7 @@
     </PropertyGroup>
     
     <Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
-        <Exec ConsoleToMSBuild="true" ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net70) run /variables:Configuration=$(Configuration)">
+        <Exec ConsoleToMSBuild="true" ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run /variables:Configuration=$(Configuration)">
             <Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />
             <Output TaskParameter="ConsoleOutput" PropertyName="NSwagOutput" />
         </Exec>
